@@ -14,26 +14,48 @@ import random
 
 
 def imprimir_equipos (algoritmos_anarquistas:list, hackers_cafe:list, codificadores_nocturnos:list, controlz:list ) -> None:
+    contador = 0
     print("\nEl equipo Algoritmos Anarquistas: ")
     for alumno in algoritmos_anarquistas:
-        print(alumno, end=", ")
+        contador+=1
+        if len(algoritmos_anarquistas) != contador :
+            print(alumno, end=", ")
+        else:
+            print(alumno, end=".")
+    contador = 0
 
     print("\nEl equipo Hackers de Café: ")
     for alumno in hackers_cafe:
-        print(alumno, end=", ")
+
+        contador+=1
+        if len(algoritmos_anarquistas) != contador :
+            print(alumno, end=", ")
+        else:
+            print(alumno, end=".")
+    contador = 0
 
     print("\nEl equipo Codificadores nocturnos: ")
     for alumno in codificadores_nocturnos:
-        print(alumno, end=", ")
+        contador+=1
+        if len(algoritmos_anarquistas) != contador :
+            print(alumno, end=", ")
+        else:
+            print(alumno, end=".")
+    contador = 0
 
     print("\nEl equipo Ctrl+Z: ")
     for alumno in controlz:
-        print(alumno, end=", ")
+        contador+=1
+        if len(algoritmos_anarquistas) != contador :
+            print(alumno, end=", ")
+        else:
+            print(alumno, end=".")
+
+
 
 
 
 def menu_Principal ()->None:
-    Lista_de_ALumnos = ["Hector", "Addi", "Alberto", "Tania", "Patricia", "Rebeca", "Jamileth", "Bryan", "Rosalinda", "Galilea", "Jennifer", "Juan"]
     diccionario_de_alumnos = {'Hector': 1,'Addi': 1, 'Alberto': 1, 'Tania':2,'Patricia':2, 'Rebeca':2,
                               'Jamileth':3,'Bryan':3,'Rosalinda':3, 'Galilea':4, 'Jennifer':4, 'Juan':4}
     algoritmos_anarquistas= ["Hector", "Addi", "Alberto"]
@@ -42,19 +64,23 @@ def menu_Principal ()->None:
     controlz = ["Galilea", "Jennifer", "Juan"]
 
     imprimir_equipos(algoritmos_anarquistas, hackers_cafe, codificadores_nocturnos, controlz)
+    print()
+    print("\nSe asignaron nuevos equipos: \n")
 
     for i in range(0,6):
         alumno1 = random.choice(list (diccionario_de_alumnos.keys()))
         alumno2 = random.choice(list (diccionario_de_alumnos.keys()))
-        del diccionario_de_alumnos[alumno1]
-        del diccionario_de_alumnos[alumno2]
-        if diccionario_de_alumnos.get(alumno1) == diccionario_de_alumnos.get(alumno2) or alumno1==alumno2:
+
+        while diccionario_de_alumnos.get(alumno1) == diccionario_de_alumnos.get(alumno2):
             alumno1 = random.choice(list(diccionario_de_alumnos.keys()))
             alumno2 = random.choice(list(diccionario_de_alumnos.keys()))
-            del diccionario_de_alumnos[alumno1]
-            del diccionario_de_alumnos[alumno2]
+
+
         print(f"\nEquipo {i+1}:")
-        print(alumno1, alumno2)
+        print(f"{alumno1} y {alumno2}.")
+
+        diccionario_de_alumnos.pop(alumno1)
+        diccionario_de_alumnos.pop(alumno2)
 
 
 
