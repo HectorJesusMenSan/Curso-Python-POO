@@ -15,6 +15,6 @@ class Profesor:
     def dominar_tema (self, tema:str):
         self.temas_dominados.append(tema)
         print(f"El profesor {self.nombre} tiene dominio en el tema: {tema}")
-    def enseñar_tema (self, no_tema:int)->str:
+    def ensenar_tema (self, no_tema:int)->str:
         tema_a_ensenar = self.temas_dominados[no_tema]
         return tema_a_ensenar
