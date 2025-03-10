@@ -1,5 +1,6 @@
 """5 de marzo.
    Hector Jesus Mendez Santiago
+   Programacion orientada a objetos: Programa de introduccion a objetos
    """
 
 
