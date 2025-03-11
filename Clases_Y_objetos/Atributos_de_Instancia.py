@@ -1,7 +1,7 @@
 """6 de marzo.
    Hector Jesus Mendez Santiago
       Programacion orientada a objetos: Programa que crea objetos
-
+      Los objetos son estancias de una clase.
    """
 class Estudiante:
     def __init__(self, nombre:str):
@@ -24,11 +24,11 @@ class Profesor:
         print(f"El profesor {self.nombre} tiene dominio en el tema: {tema}")
     def ensenar_tema (self, no_tema:int)->str:
 
-        if no_tema>len(self.temas_dominados):
-            return "Fuera de rango"
+        if no_tema<len(self.temas_dominados):
+            return self.temas_dominados[no_tema]
         else:
-            tema_a_ensenar = self.temas_dominados[no_tema]
-            return tema_a_ensenar
+            return "Fuera de rango"
+
 
     #Metodo magico
     def __str__(self)->None:
@@ -47,5 +47,19 @@ if __name__ == '__main__':
     profesor1 = Profesor("ALLLbelto mayor", ["poo", "teoria del basketball", "futbol profesional"])
     print(profesor1)
 
+    essenartemaaa = profesor1.ensenar_tema(3)
+    print(essenartemaaa)
+
+    #_________________________union de objetos_________________________________________________________________________
+    #Atributos de instancia: cada quien tiene datos independientes
+
+    #Forma 1
+    temaa1 = profesor1.ensenar_tema(1)
+    estudiante1.aprender_tema(temaa1)
+    estudiante2.aprender_tema(temaa1)
+    #Forma 2
+    estudiante2.aprender_tema(profesor1.ensenar_tema(2))
+    print(estudiante1)
+    print(estudiante2)
 
 
