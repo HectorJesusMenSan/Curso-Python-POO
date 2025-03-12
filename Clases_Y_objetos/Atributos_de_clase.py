@@ -26,3 +26,4 @@ if __name__ == '__main__':
 
     print(empleado1)
     print(empleado2)
+    print(f"Atributo de clase: {Empleado.no_id = }")

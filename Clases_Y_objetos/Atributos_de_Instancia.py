@@ -18,7 +18,8 @@ class Estudiante:
 class Profesor:
     def __init__(self, nombre:str, temas_dominados:list[str]):
         self.nombre = nombre
-        self.temas_dominados = temas_dominados
+        self.temas_dominados = temas_dominados.copy()# Nota: Se utiliza una copia porque se pasan los argumentos por referencia.
+                                                     # De esta manera, se evita que los cambios repercutan en self.temas
     def dominar_tema (self, tema:str):
         self.temas_dominados.append(tema)
         print(f"El profesor {self.nombre} tiene dominio en el tema: {tema}")
