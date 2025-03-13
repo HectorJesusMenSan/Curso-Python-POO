@@ -6,13 +6,47 @@
 -Fecha:----------12-de-marzo-de-2025.
 """
 
-def movimientos_en_ventana(ordenes:str)->None:
+def solicitud_de_datos ()->str:
+    opcion = input("Ingrese ordenes de movimiento o presione S para salir: ")
+    while not opcion.isalpha():
+        opcion=input("Dato invalido, intentalo de nuevo: ")
+    opcion = opcion.lower()
+    return opcion
+
+
+
+def movimientos_en_ventana(ordenes:str, x:int, y:int)->None:
     """
     Funcion que impementa los movimientos respectivos, tomando en cuenta el límite de 10
     :param ordenes: Direccion de movimiento
     :return: Sin retornos
     """
-    pass
+    coordenada_x, coordenada_y = x, y
+    palabras_validas = ["a","r","i","d"]
+    for palabra in ordenes:
+        if palabra  not in palabras_validas:
+            print("Error")
+        else:
+
+            if ordenes == "a":
+                if coordenada_x >= 0 <10:
+                    coordenada_x += 1
+            elif ordenes == "r":
+                if coordenada_x>=0<10:
+                    coordenada_x -= 1
+            elif ordenes == "i":
+                if coordenada_y>=0<10:
+                    coordenada_y += 1
+            elif ordenes == "d":
+                if coordenada_y>=0<10:
+                    coordenada_y -= 1
+
+    return coordenada_x, coordenada_y
+
+
+
+
+
 
 class Personaje:
     """
@@ -40,19 +74,38 @@ class Personaje:
         :return: Sin retornos
 
         """
-        pass
+        self.ordenes = ordenes
+        x=self.x
+        y=self.y
+
+        self.x,self.y = movimientos_en_ventana(self.ordenes, x, y)
+
+
     def poscion_de_personaje (self)->None:
         """
         Metodo de la posicion actual del personaje
         :return: Sin retornos
 
         """
-        pass
+        posiciones = (self.x, self.y)
+
+        print(posiciones)
+
     def __str__(self)->str:
-        return f"PERSONAJE (id de personaje: {self.id}, x: {self.x}, y:{self.y})"
+        return f"PERSONAJE (id de personaje: {self.id}, x: {self.x}, y:{self.y}.)"
 
 
 if __name__ == '__main__':
     personaje_mesant = Personaje()
     print(personaje_mesant)
+
+    ordenes = None
+
+    while ordenes!="s":
+        ordenes=solicitud_de_datos()
+        if ordenes != "s":
+           personaje_mesant.mover_personaje(ordenes)
+           print(personaje_mesant)
+
+
 
