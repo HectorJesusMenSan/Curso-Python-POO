@@ -5,6 +5,8 @@
                  una ventana con un cierto límite.
 -Fecha:----------12-de-marzo-de-2025.
 """
+from typing import Tuple
+
 
 def solicitud_de_datos ()->str:
     opcion = input("Ingrese ordenes de movimiento o presione S para salir: ")
@@ -15,33 +17,36 @@ def solicitud_de_datos ()->str:
 
 
 
-def movimientos_en_ventana(ordenes:str, x:int, y:int)->None:
+def movimientos_en_ventana(ordenes:str, x:int, y:int)->Tuple[int,int]:
     """
     Funcion que impementa los movimientos respectivos, tomando en cuenta el límite de 10
     :param ordenes: Direccion de movimiento
     :return: Sin retornos
     """
+
     coordenada_x, coordenada_y = x, y
     palabras_validas = ["a","r","i","d"]
-    for palabra in ordenes:
+    for palabra in list(ordenes):
         if palabra  not in palabras_validas:
             print("Error")
         else:
 
-            if ordenes == "a":
-                if coordenada_x >= 0 <10:
-                    coordenada_x += 1
-            elif ordenes == "r":
-                if coordenada_x>=0<10:
-                    coordenada_x -= 1
-            elif ordenes == "i":
-                if coordenada_y>=0<10:
+            if palabra == "a":
+                if coordenada_y >= 0 and coordenada_y <10:
                     coordenada_y += 1
-            elif ordenes == "d":
-                if coordenada_y>=0<10:
+            elif palabra== "r":
+                if coordenada_y>0 and coordenada_y<=10:
                     coordenada_y -= 1
+            elif palabra == "d":
+                if coordenada_x>=0 and coordenada_x<10:
+                    coordenada_x += 1
+            elif palabra == "i":
+                if coordenada_x>0 and coordenada_x<10:
+                    coordenada_x -= 1
 
     return coordenada_x, coordenada_y
+
+
 
 
 
@@ -75,10 +80,12 @@ class Personaje:
 
         """
         self.ordenes = ordenes
-        x=self.x
-        y=self.y
 
-        self.x,self.y = movimientos_en_ventana(self.ordenes, x, y)
+
+        self.x, self.y = movimientos_en_ventana(self.ordenes, self.x, self.y)
+
+
+
 
 
     def poscion_de_personaje (self)->None:
@@ -106,6 +113,7 @@ if __name__ == '__main__':
         if ordenes != "s":
            personaje_mesant.mover_personaje(ordenes)
            print(personaje_mesant)
-
+        else:
+            print("Programa finalizado")
 
 
