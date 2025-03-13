@@ -107,5 +107,5 @@ if __name__ == '__main__':
            personaje_mesant.mover_personaje(ordenes)
            print(personaje_mesant)
 
-
+asd
 
