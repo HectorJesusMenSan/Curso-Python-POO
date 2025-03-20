@@ -58,7 +58,7 @@ if __name__ == '__main__':
     unsij = Empresa("Unsij", alberto, addi)
     unsij.mostrar_empleados()
     print(unsij)
-    alberto.nombre = "AAALLLLBEEELTTTOOOOO"
+    alberto.nombre = "AAALLLLBEEELTTOOOO"
     print(alberto)
     print(alberto.nombre)
     #Cambiar nombres (Capsulas)
