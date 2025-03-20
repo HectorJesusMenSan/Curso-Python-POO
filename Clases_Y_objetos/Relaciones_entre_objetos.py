@@ -1,5 +1,5 @@
 
-"""11 de marzo.
+"""19 de marzo.
     Hector Jesus Mendez Santiago
     Programacion orientada a objetos: Programa que crea objetos
     Se relaciona con las clases.
@@ -58,3 +58,10 @@ if __name__ == '__main__':
     unsij = Empresa("Unsij", alberto, addi)
     unsij.mostrar_empleados()
     print(unsij)
+    alberto.nombre = "AAALLLLBEEELTTTOOOOO"
+    print(alberto)
+    print(alberto.nombre)
+    #Cambiar nombres (Capsulas)
+    #Set para acceder
+    #Get para ver
+
