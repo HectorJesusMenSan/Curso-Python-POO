@@ -28,6 +28,6 @@ class CuentaBancaria:
         self._saldo = nuevo_saldo
 
 if __name__ == '__main__':
-    cueta_guadalupe = CuentaBancaria("Guadalupe")
+    cueta_guadalupe = CuentaBancaria("Guadaluupe")
     print(cueta_guadalupe.saldo)
 
