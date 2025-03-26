@@ -12,9 +12,9 @@ class Window:
         self._height = height
         self._scoreboard = scoreboard
     def draw_scoreboard(self)->None:
-        print(f"Score: {self._scoreboard._points}")
+        self._scoreboard.draw()
     def update_score(self, points:int)->None:
-        self._scoreboard._points += points
+        self._scoreboard.puntos = points
     def __str__(self)->str:
         return f"titulo: {self._title}, width: {self._width}, heigth:{self._height}, scoreboard: {self._scoreboard}"
 
@@ -64,6 +64,7 @@ if __name__ == "__main__":
     print()
     print("Método para actualizar el scoreboard:")
     buscaminas.update_score(1)
+    buscaminas.draw_scoreboard()
 
 
     # Se crean objetos de ambas clases y se prueban sus métodos.
@@ -83,6 +84,9 @@ if __name__ == "__main__":
     print()
     print("Método para actualizar el scoreboard:")
     solitario.update_score(11)
+    solitario.draw_scoreboard()
+
+
 
 
     # Se modifican los atributos mediante los métodos de acceso.
@@ -92,5 +96,5 @@ if __name__ == "__main__":
     print("Se tiene la ventana buscaminas:")
     print(f"buscaminas = {buscaminas}")
     print("Se reemplaza el scoreboard utilizando el setter:")
-    buscaminas.scoreboard = marcador_solitario
+    buscaminas._scoreboard = marcador_solitario
     print(f"buscaminas = {buscaminas}")
