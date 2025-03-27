@@ -94,7 +94,7 @@ if __name__ == "__main__":
     print("  -- Se modifican los atributos mediante los métodos de acceso.")
 
     print("Se tiene la ventana buscaminas:")
-    print(f"buscaminas = {buscaminas}")
+    print(f"buscaminas= {buscaminas}")
     print("Se reemplaza el scoreboard utilizando el setter:")
     buscaminas._scoreboard = marcador_solitario
     print(f"buscaminas = {buscaminas}")
