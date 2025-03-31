@@ -22,8 +22,10 @@ And in case of 12 you need 6 toasts less (but not -6):
 
 def six_toast(num:int)->int:
     """
-    Funcion que recibe un número, y retorna una cantidad que le hace falta o le sobra para tener
+    Función que recibe un número, y retorna una cantidad que le hace falta o le sobra para tener
     una cantidad de 6
+    :param num: número que se recibe
+    :return : cantidad que sobra o falta
     """
     if num < 6:
         return 6 - num

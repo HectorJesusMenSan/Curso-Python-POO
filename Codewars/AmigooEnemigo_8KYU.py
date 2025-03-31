@@ -15,7 +15,7 @@ Nota: mantenga el orden original de los nombres en la salida.
 
 def friend(x:list)->list:
     """
-    Funcion que recibe una lista de cadenas y calcula ls cantidad de palabras
+    Función que recibe una lista de cadenas y calcula ls cantidad de palabras
     de cada elemento, si son iguales a cuatro las guarda en otra lista que duebuelve
     al final.
     :param x: lista de nombres
@@ -28,5 +28,6 @@ def friend(x:list)->list:
             lista_de_amigos.append(nombre)
     return lista_de_amigos
 if __name__ == '__main__':
+
     lst = ["nombre","hect"]
     print(friend(lst))

@@ -12,7 +12,12 @@ Examples
 
 
 
-def replace_exclamation(st):
+def replace_exclamation(st: str)->str:
+    """
+    Elimina vocales de una cadena, devuelve una cadena y recibe una cadena
+    """
+
+
     lista_vocales = ["a", "e", "i", "o", "u","A", "E", "I", "O", "U"]
     st = list(st)
     for i in range(len(st)):
