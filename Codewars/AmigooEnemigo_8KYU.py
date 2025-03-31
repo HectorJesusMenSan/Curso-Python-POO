@@ -13,7 +13,14 @@ Nota: mantenga el orden original de los nombres en la salida.
 """
 
 
-def friend(x):
+def friend(x:list)->list:
+    """
+    Funcion que recibe una lista de cadenas y calcula ls cantidad de palabras
+    de cada elemento, si son iguales a cuatro las guarda en otra lista que duebuelve
+    al final.
+    :param x: lista de nombres
+    :return: lista de nombres con 4 letras.
+    """
     #Code
     lista_de_amigos=[]
     for nombre in x:

@@ -20,7 +20,11 @@ And in case of 12 you need 6 toasts less (but not -6):
 
 """
 
-def six_toast(num):
+def six_toast(num:int)->int:
+    """
+    Funcion que recibe un número, y retorna una cantidad que le hace falta o le sobra para tener
+    una cantidad de 6
+    """
     if num < 6:
         return 6 - num
     elif num > 6:
