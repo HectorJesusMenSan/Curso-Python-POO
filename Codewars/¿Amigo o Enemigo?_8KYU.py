@@ -21,5 +21,5 @@ def friend(x):
             lista_de_amigos.append(nombre)
     return lista_de_amigos
 if __name__ == '__main__':
-    lst = ["nombre","hect"]
+    lst = ["nombre","hector"]
     print(friend(lst))

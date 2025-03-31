@@ -1,4 +1,5 @@
 """
+Hector Jesus Mendez Santiago
 Story:
 You are going to make toast fast, you think that you should make multiple pieces of toasts and once. So, you try to make 6 pieces of toast.
 
@@ -14,6 +15,9 @@ You must return the number of toast the you need to put in (or to take out). In 
 And in case of 12 you need 6 toasts less (but not -6):
 
 12 --> 6
+
+
+
 """
 
 def six_toast(num):
