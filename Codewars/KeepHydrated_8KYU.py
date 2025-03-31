@@ -1,5 +1,5 @@
 """
-Nombre: Héctor Jesús Méndez Santiago
+Nombre: Héctor Jesús Méndez Santiago.
 Descripción: A Nathan le encanta el ciclismo.
 
 Debido a que Nathan sabe que es importante mantenerse hidratado, bebe 0.5 litros de agua por hora de ciclismo.
