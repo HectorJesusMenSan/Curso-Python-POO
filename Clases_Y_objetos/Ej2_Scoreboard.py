@@ -6,13 +6,29 @@
 class Scoreboard:
 
     def __init__(self, points:int=0, text_color:tuple[int]=(0, 0, 0), font:str = "kilmono", size:float=48 ):
+        """
+        Constructor de atributos de la clase.
+        @param points: Recibe puntos de un usuario
+        @param text_color: Recibe datos del color de texto en tuplas
+        @param font: Es un string
+        @param size: Recibe un dato flotante que determina un tamaño
+        """
         self._points = points
         self._text_color = text_color
         self._font = font
         self._size = size
-    def __str__(self):
+    def __str__(self)->str:
+        """
+        Métod0 magico para mostrar escrituras en pantalla.
+        Le puse 0 porque marca un T0D0
+        @return: Retorna un mensaje o un str
+        """
         return f"Puntos: {self._points}, Texto: {self._text_color}, font: {self._font}, size: {self._size} "
     def draw (self):
+        """
+        Metodo para mostrar puntos
+        @return: Sin retornos
+        """
         print(self._points)
 
 

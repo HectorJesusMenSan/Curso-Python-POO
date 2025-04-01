@@ -2,20 +2,40 @@
     Hector Jesus Mendez Santiago
     Programacion orientada a objetos: Primer modulo, Window
 """
-
+#Se importa el scoreboard
 from Clases_Y_objetos.Ej2_Scoreboard import Scoreboard
 
 class Window:
     def __init__(self, text:str, width:int, height:int, scoreboard:Scoreboard=Scoreboard()):
+        """
+        Constructor de la clase de ventana que recibe altura, ancho y un dato de tipo Scoreboard
+        @param text: Cadena de texto
+        @param width: Ancho
+        @param height: Altura
+        @param scoreboard: dato tipo Scoreboard
+        """
         self._title = text
         self._width = width
         self._height = height
         self._scoreboard = scoreboard
     def draw_scoreboard(self)->None:
+        """
+        Métod0 para mostrar el dato Scoreboard
+        @return:None
+        """
         self._scoreboard.draw()
     def update_score(self, points:int)->None:
+        """
+        Métod0 para actualizar puntos en la clase.
+        @param points: Recibe los puntos que se actualizáran
+        @return: Sin retornos
+        """
         self._scoreboard.puntos = points
     def __str__(self)->str:
+        """
+        Metodo magico para mostrar los datos de la clase en pantalla.
+        @return: Letrero informativo
+        """
         return f"titulo: {self._title}, width: {self._width}, heigth:{self._height}, scoreboard: {self._scoreboard}"
 
     @property
