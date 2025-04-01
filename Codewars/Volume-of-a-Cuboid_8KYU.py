@@ -7,9 +7,9 @@ Escribe una función para ayudar a Bob con este cálculo.
 """
 
 
-def get_volume_of_cuboid(length, width, height)->int:
+def get_volume_of_cuboid(length:float, width:float, height:float)->int:
     """
-    Funcion que imprime calcula el volumen de un cuboide
+    Función que imprime calcula el volumen de un cubo
     :param length: largo
     :param width: ancho
     :param height: altura

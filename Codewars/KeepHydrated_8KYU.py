@@ -14,7 +14,7 @@ time = 6.7---> litres = 3
 
 time = 11.8--> litres = 5
 """
-def operaciones (tiempo_recorrido)->int:
+def operaciones (tiempo_recorrido:float)->int:
     """
     Función que realiza operaciones para encontrar la cantidad de litros que se toman
     en un determinado tiempo.
