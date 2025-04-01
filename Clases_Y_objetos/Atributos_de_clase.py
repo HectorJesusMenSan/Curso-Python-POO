@@ -1,6 +1,6 @@
 """11 de marzo.
    Hector Jesus Mendez Santiago
-      Programacion orientada a objetos: Programa que crea objetos
+      Programación orientada a objetos: Programa que crea objetos
       Se relaciona con las clases
       __no_id___:int = Indica que es un tributo de clase
    """
