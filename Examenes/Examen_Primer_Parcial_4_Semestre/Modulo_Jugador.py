@@ -5,9 +5,6 @@ Descripción: Modulo donde se crea la clase de
 """
 
 
-
-
-
 class Jugador :
     def __init__(self, nombre: str, numero: int, goles: int = 0):
         """
