@@ -1,5 +1,5 @@
 from colorama import Fore, Back, Style
-from reportlab.lib.colors import forestgreen
+
 
 from Examenes.Examen_Primer_Parcial_4_Semestre.Modulo_Equios import Equipo
 from Examenes.Examen_Primer_Parcial_4_Semestre.Modulo_Jugador import Jugador
@@ -51,6 +51,7 @@ def ver_equipos(equipos):
         contador = 0
         for equipo in equipos:
             print(Fore.YELLOW + f"{contador}).{equipo.nombre}")
+            contador += 1
     else:
         print(Fore.RED + "\n\tNo hay equipos.")
 
@@ -94,22 +95,29 @@ def menu_principal():
                 ver_equipos(equipos)
                 escoger_equipo = input("Escoge el equipo: ")
                 escoger_equipo = validar_numeros(escoger_equipo)
-                while escoger_equipo not in range (len(equipos)):
-                    escoger_equipo = str(escoger_equipo)
+                while escoger_equipo > len(equipos)-1:
+                    escoger_equipo = input(Fore.RED + "Error, fuera de rango: ")
                     escoger_equipo = validar_numeros(escoger_equipo)
+
+                ver_jugadores(jugadores)
                 contador = input("Cuantos jugadores deseas meter? : ")
                 contador = validar_numeros(contador)
-                while contador not in range (len(jugadores)):
-                    contador = str(contador)
+                while contador > len(jugadores):
+                    contador = input(Fore.RED + "Error, fuera de rango: ")
                     contador = validar_numeros(contador)
 
                 if contador>0:
 
                     for i in range(0, contador):
-                        ver_jugadores(jugadores)
+
                         jugador_seleccionado = input("Ingresa jugador a agregar: ")
                         jugador_seleccionado = validar_numeros(jugador_seleccionado)
+                        while jugador_seleccionado > len(jugadores)-1:
+                            jugador_seleccionado = input(Fore.RED + "Error, fuera de rango: ")
+                            jugador_seleccionado = validar_numeros(jugador_seleccionado)
+
                         equipos[escoger_equipo].agregar_jugadores(jugadores[jugador_seleccionado])
+                        print(Fore.GREEN + f"El {jugadores[jugador_seleccionado].nombre} se agredo al {equipos[escoger_equipo].nombre}")
                 else:
                     print(Fore.RED + "\n\tNo hay cantidad de jugadores a agregar.")
             else:
@@ -120,11 +128,17 @@ def menu_principal():
                 ver_equipos(equipos)
                 escoger_equipo = input("Escoge el equipo: ")
                 escoger_equipo = validar_numeros(escoger_equipo)
+                while escoger_equipo>len(equipos)-1:
+                    escoger_equipo = input(Fore.RED + "Error, fuera de rango: ")
+                    escoger_equipo = validar_numeros(escoger_equipo)
 
 
                 if len(equipos[escoger_equipo].jugadores) > 0:
                     contador = input("Cuantos jugadores deseas eliminar? : ")
                     contador = validar_numeros(contador)
+                    while contador > len(equipos[escoger_equipo].jugadores):
+                        contador = input(Fore.RED + "Error, fuera de rango: ")
+                        contador = validar_numeros(contador)
 
                     if contador>0:
                         for i in range(0, contador):
@@ -132,8 +146,12 @@ def menu_principal():
                             ver_jugadores(equipos[escoger_equipo].jugadores)
                             jugador_seleccionado = input("Ingresa jugador a eliminar: ")
                             jugador_seleccionado = validar_numeros(jugador_seleccionado)
-                            equipos[escoger_equipo].remover_jugadores(jugadores[jugador_seleccionado])
-                            print(f"{jugadores[jugador_seleccionado]}, se elimino. ")
+                            while jugador_seleccionado > len(equipos[escoger_equipo].jugadores) - 1:
+                                jugador_seleccionado = input(Fore.RED + "Error, fuera de rango: ")
+                                jugador_seleccionado = validar_numeros(jugador_seleccionado)
+
+                            equipos[escoger_equipo].remover_jugadores(equipos[escoger_equipo].jugadores[jugador_seleccionado])
+                            print(f"{jugadores[jugador_seleccionado].nombre}, se elimino. ")
                     else:
                         print(Fore.RED + "\n\tNo hay cantidad de jugadores a eliminar.")
                 else:
@@ -144,29 +162,44 @@ def menu_principal():
         elif opcion == 7:#Agregar equipos a torneo
 
             if len(equipos)>0:
-
+                ver_equipos(equipos)
                 contador = input("Cuantos equipos inscribiras al torneo?: ")
                 contador = validar_numeros(contador)
+                while contador > len(equipos):
+                    contador = input(Fore.RED + "Error, fuera de rango: ")
+                    contador = validar_numeros(contador)
+
                 for i in range(0, contador):
                     ver_equipos(equipos)
                     escoger_equipo = input("Que equipo inscribiras: ")
                     escoger_equipo = validar_numeros(escoger_equipo)
+                    while escoger_equipo > len(equipos)-1:
+                        escoger_equipo = input("Que equipo inscribiras: ")
+                        escoger_equipo = validar_numeros(escoger_equipo)
+
                     champions_league.agregar_equipos(equipos[escoger_equipo])
-                    print(f"Se agrego el equipo {equipos[escoger_equipo]} al torneo {champions_league.nombre}")
+                    print(f"Se agrego el equipo {equipos[escoger_equipo].nombre} al torneo {champions_league.nombre}")
             else:
                 print(Fore.RED + "\n\tError, no se agregaran equipos.")
 
         elif opcion == 8:
             if len(equipos) > 0:
-
+                ver_equipos(champions_league.equipos)
                 contador = input("Cuantos equipos eliminaras del torneo?: ")
                 contador = validar_numeros(contador)
+                while contador>len(champions_league.equipos):
+                    contador = input(Fore.RED + "Error. fuera de rango: ")
+                    contador = validar_numeros(contador)
+
                 for i in range(0, contador):
-                    ver_equipos(equipos)
+                    ver_equipos(champions_league.equipos)
                     escoger_equipo = input("Que equipo eliminaras: ")
                     escoger_equipo = validar_numeros(escoger_equipo)
+                    while escoger_equipo> len(champions_league.equipos)-1:
+                        escoger_equipo = input("Error fuera de rango: ")
+                        escoger_equipo = validar_numeros(escoger_equipo)
                     champions_league.remover_equipos(equipos[escoger_equipo])
-                    print(f"Se agrego el equipo {equipos[escoger_equipo]} al torneo {champions_league.nombre}")
+                    print(f"Se elimino el equipo {equipos[escoger_equipo]} al torneo {champions_league.nombre}")
             else:
                 print(Fore.RED + "\n\tError, no hay equipos que agregar.")
         elif opcion == 9:
@@ -182,10 +215,14 @@ def menu_principal():
         elif opcion == 10:
 
             if len(equipos)>0:
-                ver_equipos(equipos)
+                ver_equipos(champions_league.equipos)
                 escoger_equipo = input("Escoge equipo: ")
                 escoger_equipo = validar_numeros(escoger_equipo)
-                equipos[escoger_equipo].total_de_goles()
+                while escoger_equipo>len(champions_league.equipos)-1:
+                    escoger_equipo = input("Error. Escoge equipo: ")
+                    escoger_equipo = validar_numeros(escoger_equipo)
+
+                champions_league.equipos[escoger_equipo].total_de_goles()
             else:
                 print(Fore.RED + "\n\tError, fuera de rango...")
 
