@@ -44,7 +44,7 @@ def ver_jugadores (jugadores):
             print(Fore.YELLOW + f"{contador}).{jugador.nombre}")
             contador += 1
     else:
-        print("No hay jugadores")
+        print(Fore.RED + "\n\tNo hay jugadores")
 def ver_equipos(equipos):
     if len(equipos)>0:
         print(Fore.BLUE + "Todos los Equipos son: ")
@@ -52,8 +52,16 @@ def ver_equipos(equipos):
         for equipo in equipos:
             print(Fore.YELLOW + f"{contador}).{equipo.nombre}")
     else:
-        print("No hay equipos.")
+        print(Fore.RED + "\n\tNo hay equipos.")
 
+def validar_numeros (numero:str)->int:
+    while not  numero.isnumeric():
+        numero = input(Fore.RED + "Error, intenta otra vez: ")
+    return int(numero)
+def validar_letras (palabra:str)->str:
+    while not  palabra.isalpha():
+        palabra = input(Fore.RED + "Error, intenta otra vez: ")
+    return str(palabra)
 def menu_principal():
     jugadores  = []
     equipos = []
@@ -64,97 +72,130 @@ def menu_principal():
         opcion = menu_interactivo()
         if opcion == 1:
             nombre_jugador = input(Fore.CYAN + "Ingrese el nombre del nuevo jugador: ")
-            numero_jugador = int(input(Fore.CYAN + "Ingresa el número del nuevo jugador: "))
+            nombre_jugador = validar_letras(nombre_jugador)
+            numero_jugador = input(Fore.CYAN + "Ingresa el número del nuevo jugador: ")
+            numero_jugador = validar_numeros(numero_jugador)
             jugador = Jugador(nombre_jugador, numero_jugador)
+            print(Fore.GREEN + f"\n\tEl jugador: {jugador.nombre}, fue creado exitosamente.")
             jugadores.append(jugador)
         elif opcion == 2:
             nombre_equipo = input(Fore.CYAN + "Ingresa nombre de equipo: ")
+            nombre_equipo = validar_letras(nombre_equipo)
             equipo = Equipo(nombre_equipo)
+            print(Fore.GREEN + f"\n\tEl equipo: {equipo.nombre} fue creado.")
             equipos.append(equipo)
         elif opcion == 3:
             ver_jugadores(jugadores)
         elif opcion == 4:
             ver_equipos(equipos)
         elif opcion == 5:   #Agregar jugador a equipo
-            ver_equipos(equipos)
+
             if len(equipos)>0:
-                escoger_equipo = int(input("Escoge el equipo: "))
-                contador = int(input("Cuantos jugadores deceas meter? : "))
+                ver_equipos(equipos)
+                escoger_equipo = input("Escoge el equipo: ")
+                escoger_equipo = validar_numeros(escoger_equipo)
+                while escoger_equipo not in range (len(equipos)):
+                    escoger_equipo = str(escoger_equipo)
+                    escoger_equipo = validar_numeros(escoger_equipo)
+                contador = input("Cuantos jugadores deseas meter? : ")
+                contador = validar_numeros(contador)
+                while contador not in range (len(jugadores)):
+                    contador = str(contador)
+                    contador = validar_numeros(contador)
 
                 if contador>0:
+
                     for i in range(0, contador):
                         ver_jugadores(jugadores)
-                        jugador_seleccionado = int(input("Ingresa jugador a agregar: "))
+                        jugador_seleccionado = input("Ingresa jugador a agregar: ")
+                        jugador_seleccionado = validar_numeros(jugador_seleccionado)
                         equipos[escoger_equipo].agregar_jugadores(jugadores[jugador_seleccionado])
                 else:
-                    print("No hay cantidad de jugadores a agregar.")
+                    print(Fore.RED + "\n\tNo hay cantidad de jugadores a agregar.")
             else:
-                print("Error.")
+                print(Fore.RED + "\n\tError, no hay elementos...")
 
         elif opcion == 6:   #Eliminar jugador de equipo
-            ver_equipos(equipos)
             if len(equipos)>0:
-                escoger_equipo = int(input("Escoge el equipo: "))
-                contador = int(input("Cuantos jugadores deseas eliminar? : "))
+                ver_equipos(equipos)
+                escoger_equipo = input("Escoge el equipo: ")
+                escoger_equipo = validar_numeros(escoger_equipo)
 
-                if contador>0:
-                    for i in range(0, contador):
-                        ver_jugadores(equipos[escoger_equipo].jugadores)
-                        jugador_seleccionado = int(input("Ingresa jugador a eliminar: "))
-                        equipos[escoger_equipo].remover_jugadores(jugadores[jugador_seleccionado])
-                        print(f"{jugadores[jugador_seleccionado]}, se elimino. ")
+
+                if len(equipos[escoger_equipo].jugadores) > 0:
+                    contador = input("Cuantos jugadores deseas eliminar? : ")
+                    contador = validar_numeros(contador)
+
+                    if contador>0:
+                        for i in range(0, contador):
+
+                            ver_jugadores(equipos[escoger_equipo].jugadores)
+                            jugador_seleccionado = input("Ingresa jugador a eliminar: ")
+                            jugador_seleccionado = validar_numeros(jugador_seleccionado)
+                            equipos[escoger_equipo].remover_jugadores(jugadores[jugador_seleccionado])
+                            print(f"{jugadores[jugador_seleccionado]}, se elimino. ")
+                    else:
+                        print(Fore.RED + "\n\tNo hay cantidad de jugadores a eliminar.")
                 else:
-                    print("No hay cantidad de jugadores a agregar.")
+                    print(Fore.RED + "\n\tError: No hay jugadores en equipo")
             else:
-                print("Error.")
+                print(Fore.RED + "\n\tError, no hay equipos...")
 
         elif opcion == 7:#Agregar equipos a torneo
 
             if len(equipos)>0:
 
-                contador = int(input("Cuantos equipos inscribiras al torneo?: "))
+                contador = input("Cuantos equipos inscribiras al torneo?: ")
+                contador = validar_numeros(contador)
                 for i in range(0, contador):
                     ver_equipos(equipos)
-                    escoger_equipo = int(input("Que equipo inscribiras: "))
+                    escoger_equipo = input("Que equipo inscribiras: ")
+                    escoger_equipo = validar_numeros(escoger_equipo)
                     champions_league.agregar_equipos(equipos[escoger_equipo])
                     print(f"Se agrego el equipo {equipos[escoger_equipo]} al torneo {champions_league.nombre}")
             else:
-                print("Error")
+                print(Fore.RED + "\n\tError, no se agregaran equipos.")
+
         elif opcion == 8:
             if len(equipos) > 0:
 
-                contador = int(input("Cuantos equipos eliminaras del torneo?: "))
+                contador = input("Cuantos equipos eliminaras del torneo?: ")
+                contador = validar_numeros(contador)
                 for i in range(0, contador):
                     ver_equipos(equipos)
-                    escoger_equipo = int(input("Que equipo eliminaras: "))
+                    escoger_equipo = input("Que equipo eliminaras: ")
+                    escoger_equipo = validar_numeros(escoger_equipo)
                     champions_league.remover_equipos(equipos[escoger_equipo])
                     print(f"Se agrego el equipo {equipos[escoger_equipo]} al torneo {champions_league.nombre}")
             else:
-                print("Error")
+                print(Fore.RED + "\n\tError, no hay equipos que agregar.")
         elif opcion == 9:
             if len(jugadores)>0:
                 ver_jugadores(jugadores)
-                jugador_a_anotar = int(input("A que jugador anotaras goles?: "))
-                anotar_gol = int(input("Cuantos goles se anotaran?: "))
+                jugador_a_anotar = input("A que jugador anotaras goles?: ")
+                jugador_a_anotar = validar_numeros(jugador_a_anotar)
+                anotar_gol = input("Cuantos goles se anotaran?: ")
+                anotar_gol = validar_numeros(anotar_gol)
                 jugadores[jugador_a_anotar].anotar_goles(anotar_gol)
             else:
-                print("Eror....")
+                print(Fore.RED + "\n\tError, no existen jugadores...")
         elif opcion == 10:
 
             if len(equipos)>0:
                 ver_equipos(equipos)
-                escoger_equipo = int(input("Escoge equipo: "))
+                escoger_equipo = input("Escoge equipo: ")
+                escoger_equipo = validar_numeros(escoger_equipo)
                 equipos[escoger_equipo].total_de_goles()
             else:
-                print("Error")
+                print(Fore.RED + "\n\tError, fuera de rango...")
 
         elif opcion == 11:
             champions_league.generar_rol()
-            pass
+
         elif opcion == 0:
-            pass
+            print(Fore.LIGHTMAGENTA_EX + "Salida exitosa")
         else:
-            print(Fore.RED + "Error, fuera de rango...")
+            print(Fore.RED + "\n\tError, fuera de rango...")
 
 
 if __name__ == '__main__':
