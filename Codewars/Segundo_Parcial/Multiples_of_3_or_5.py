@@ -5,7 +5,6 @@ def solution(number):
     @param number: Número que delimita el final o el rango
     @return: Números múltiplos de 3 o 5, en caso de que el rango sea
     negativo retorna 0.
-
     """
     acum = 0
     for i in range(0, number):
