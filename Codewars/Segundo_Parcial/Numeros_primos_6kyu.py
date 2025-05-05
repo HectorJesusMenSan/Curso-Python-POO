@@ -1,5 +1,10 @@
-
+"""Ejercicio: Kata nivel 6Kyu"""
 def is_prime (number: int)->bool:
+    """
+    Función que verifica si un número es primo
+    @param number:
+    @return:
+    """
 
     if number <= 1:
         return False
