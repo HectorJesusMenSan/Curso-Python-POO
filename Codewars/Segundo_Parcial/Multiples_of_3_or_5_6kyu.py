@@ -1,4 +1,4 @@
-def solution(number):
+def solution(number: int)->int:
     """
     Función que recibe un número que delimita el final de los números
     que se deben calcular si son múltiplos de 3 o 5
